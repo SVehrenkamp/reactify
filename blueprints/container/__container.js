@@ -1,4 +1,4 @@
-module.exports = function (name){
+module.exports = (name) => {
 
   return (
 `

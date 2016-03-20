@@ -25,13 +25,13 @@ module.exports  = (name) => {
   });
 
   //Create Component and SCSS files
-  var __container = require('./__container');
+  const __container = require('./__container');
   fs.writeFileSync((directory + '/container.js'), __container(file_name), 'utf8', (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created '+file_name+' container.js'));
   });
 
-  var __styles = require('./__styles');
+  const __styles = require('./__styles');
   fs.writeFileSync(directory + '/styles.scss', __styles(file_name), 'utf8', (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created '+file_name+' styles.scss'));

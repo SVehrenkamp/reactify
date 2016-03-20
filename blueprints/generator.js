@@ -1,27 +1,29 @@
-var colors = require('colors');
+'use strict';
 
-var args = process.argv;
-var generator_type = process.argv[2];
-var generator_name = process.argv[3];
+const colors = require('colors');
+
+const args = process.argv;
+const generator_type = process.argv[2];
+const generator_name = process.argv[3];
 
 switch (generator_type) {
     case 'component': {
-      var generate = require('./component/index');
+      let generate = require('./component/index');
       console.log(colors.green("Generating " + generator_type +" "+ generator_name));
       generate(generator_name);
     } break;
     case 'container': {
-      var generate = require('./container/index');
+      let generate = require('./container/index');
       console.log(colors.green("Generating " + generator_type +" "+ generator_name));
       generate(generator_name);
     } break;
     case 'action': {
-      var generate = require('./action/index');
+      let generate = require('./action/index');
       console.log(colors.green("Generating " + generator_type +" "+ generator_name));
       generate(generator_name);
     } break;
     case 'reducer': {
-      var generate = require('./reducer/index');
+      let generate = require('./reducer/index');
       console.log(colors.green("Generating " + generator_type +" "+ generator_name));
       generate(generator_name);
     } break;

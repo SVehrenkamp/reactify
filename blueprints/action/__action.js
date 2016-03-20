@@ -1,9 +1,9 @@
-module.exports = function (action){
+module.exports = (action) => {
 
   return (
 `'use strict';
 
-module.exports = function(data) {
+module.exports = (data) => {
   return {type: '${action}', data: data};
 }
 `);

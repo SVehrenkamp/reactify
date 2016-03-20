@@ -1,7 +1,7 @@
 
 const initialState = {};
 
-module.exports = function(state = initialState, action){
+module.exports = (state = initialState, action) => {
 
   switch (action.type) {
     case 'SOME_ACTION': {

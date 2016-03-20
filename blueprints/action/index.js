@@ -25,7 +25,7 @@ module.exports  = (action) => {
   });
 
   //Create Component and SCSS files
-  var __action = require('./__action');
+  const __action = require('./__action');
   fs.writeFileSync((directory + '/'+action_type+'.js'), __action(action_type), 'utf8', (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created '+action));
