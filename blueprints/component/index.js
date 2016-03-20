@@ -19,20 +19,20 @@ module.exports  = (name) => {
   const directory = path.join(__dirname, '../../src/components/' + directory_name + file_name);
 
   //Create Directory
-  mkdirp(directory, (err) => {
+  mkdirp.sync(directory, (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created Directory for Component ' + name));
   });
 
   //Create Component and SCSS files
   var __component = require('./__component');
-  fs.writeFile((directory + '/component.js'), __component(file_name), 'utf8', (err) => {
+  fs.writeFileSync((directory + '/component.js'), __component(file_name), 'utf8', (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created '+file_name+' component.js'));
   });
 
   var __styles = require('./__styles');
-  fs.writeFile(directory + '/styles.scss', __styles(file_name), 'utf8', (err) => {
+  fs.writeFileSync(directory + '/styles.scss', __styles(file_name), 'utf8', (err) => {
     if (err) throw err;
     console.log(colors.yellow('Created '+file_name+' styles.scss'));
   });
