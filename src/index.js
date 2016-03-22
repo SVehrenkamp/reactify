@@ -10,9 +10,9 @@ const store = configureStore();
 
 //Component Containers
 import App from './containers/App';
-import HomeContainer from './containers/HomeContainer';
-import AboutContainer from './containers/AboutContainer';
-import ShopContainer from './containers/ShopContainer';
+import HomeContainer from './containers/HomeContainer/container';
+import AboutContainer from './containers/AboutContainer/container';
+import ShopContainer from './containers/ShopContainer/container';
 
 //Styles
 require("skeleton-css");

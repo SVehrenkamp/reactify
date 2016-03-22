@@ -3,6 +3,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+require('./styles.scss');
+
 class Navigation extends React.Component {
   render () {
     return (

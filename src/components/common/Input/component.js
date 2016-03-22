@@ -5,7 +5,7 @@ import React from 'react';
 //include styles
 require('./styles.scss');
 
-class carousel extends React.Component {
+class Input extends React.Component {
   constructor() {
     super();
   }
@@ -20,14 +20,14 @@ class carousel extends React.Component {
   }
   render () {
     return (
-      <div className="carousel">
+      <div className="Input">
         {this.props.children}
       </div>
     );
   }
 }
 
-carousel.displayName = "carousel";
-carousel.defaultProps = {};
+Input.displayName = "Input";
+Input.defaultProps = {};
 
-export default carousel;
+export default Input;

@@ -28,6 +28,7 @@ switch (generator_type) {
       generate(generator_name);
     } break;
     default: {
+      console.log(args);
       console.log(colors.red('Please enter a valid generator type!'));
     }
 }

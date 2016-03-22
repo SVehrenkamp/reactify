@@ -3,18 +3,20 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class UserContainerContainer extends Component {
+require('./styles.scss');
+
+class ShopContainerContainer extends Component {
   render() {
     const {actions} = this.props;
     return (
-      <div className="UserContainer">
-        <h1>UserContainer</h1>
+      <div className="ShopContainer">
+        <h1>ShopContainer</h1>
       </div>
     );
   }
 }
 
-UserContainerContainer.propTypes = {
+ShopContainerContainer.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
@@ -30,4 +32,4 @@ function mapDispatchToProps(dispatch) {
   return actionMap;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainerContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopContainerContainer);

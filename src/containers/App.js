@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Navigation from '../components/global/Navigation/component';
+import Navigation from '../components/common/Navigation/component';
+import Actions from '../actions/actions';
 
 require('styles/global/app.scss');
 
@@ -32,7 +33,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  const actions = {signIn: require('../actions/user/sign_in') };
+  const actions = Actions;
   const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;
 }
