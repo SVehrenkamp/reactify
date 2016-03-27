@@ -5,20 +5,19 @@ import { Link, browserHistory } from 'react-router';
 
 import Hero from '../../components/common/Hero/component';
 import Actions from '../../actions/actions';
+
 import ItemCard from '../../components/item/ItemCard/component';
 
 require('./styles.scss');
 
 let HeroImage = require('../../images/logo.svg');
-const items = [
-  {tcin: 12345, price: "99.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/21533465' },
-  {tcin: 67890, price: "9.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/21530747' },
-  {tcin: 10123, price: "29.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/21533474' },
-  {tcin: 10456, price: "3.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/18852352' }
-];
 
 
 class HomeContainer extends Component {
+  componentDidMount(){
+    this.props.actions.getProducts();
+      console.log('CALLING API', this);
+  }
   updateCart(item, e) {
     console.log("ITEM =>", item);
     e.preventDefault();
@@ -55,6 +54,7 @@ class HomeContainer extends Component {
   render() {
     console.log("COMPONENT STATE::", this);
     const {actions} = this.props;
+    const items = this.props.items;
     return (
       <div className="Home">
         <Hero image={HeroImage} />
@@ -79,13 +79,15 @@ HomeContainer.contextTypes = {
 
 function mapStateToProps(state) {
   const props = {
-    cart: state.cart
+    cart: state.cart,
+    items: state.api.items || []
   };
   return props;
 }
 
 function mapDispatchToProps(dispatch) {
-  const actionMap = {actions: bindActionCreators(Actions.cart, dispatch)};
+  const actions = Object.assign({}, Actions.cart, Actions.api)
+  const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;
 }
 

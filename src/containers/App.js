@@ -36,7 +36,8 @@ App.propTypes = {
 function mapStateToProps(state) {
   const props = {
     user: state.user,
-    cart: state.cart
+    cart: state.cart,
+    items: state.api.items
   };
   return props;
 }
