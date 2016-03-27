@@ -24,7 +24,7 @@ render(
       <Route component={App}>
         <Route path="/" component={HomeContainer} />
         <Route path="/about" component={AboutContainer} />
-        <Route path="/shop" component={ShopContainer} />
+        <Route path="/shop/:tcin" component={ShopContainer} />
       </Route>
     </Router>
   </Provider>,

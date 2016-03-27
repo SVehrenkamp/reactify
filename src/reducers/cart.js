@@ -18,7 +18,7 @@ module.exports = (state = initialState, action) => {
         nextState.cartTotal = nextState.cartItems.reduce(function(a, b){
           console.log("REDUCE", a.price, b.price)
           return {price: parseFloat(a.price) + parseFloat(b.price)};
-        }).price;
+        }).price.toFixed(2);
 
       } else {
         nextState.cartTotal = parseFloat(action.data.price);
@@ -41,7 +41,7 @@ module.exports = (state = initialState, action) => {
       if (nextState.cartItems.length > 1) {
         nextState.cartTotal = nextState.cartItems.reduce(function(a, b){
           return {price: parseFloat(a.price) + parseFloat(b.price)};
-        }).price;
+        }).price.toFixed(2);
 
       } else {
         console.log("Cart Items::", nextState.cartItems.length);

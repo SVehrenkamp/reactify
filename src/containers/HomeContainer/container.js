@@ -1,14 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+
 import Hero from '../../components/common/Hero/component';
 import Actions from '../../actions/actions';
 import ItemCard from '../../components/item/ItemCard/component';
 
 require('./styles.scss');
 
-let HeroImage = require('../../images/hero.jpg');
+let HeroImage = require('../../images/logo.svg');
 const items = [
   {tcin: 12345, price: "99.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/21533465' },
   {tcin: 67890, price: "9.95", qty: 1, image: 'http://target.scene7.com/is/image/Target/21530747' },
@@ -18,8 +19,11 @@ const items = [
 
 
 class HomeContainer extends Component {
-  updateCart(item) {
+  updateCart(item, e) {
     console.log("ITEM =>", item);
+    e.preventDefault();
+    e.stopPropagation();
+
     let cartItems = this.props.cart.cartItems;
 
     var _item;
@@ -43,17 +47,21 @@ class HomeContainer extends Component {
       }break;
     }
   }
+  goToPDP(item, e) {
+    console.log(item);
+    console.log('GOING TO PDP');
+    this.context.router.push('/shop/'+item.tcin);
+  }
   render() {
-    console.log("COMPONENT STATE::", this.props.cart);
+    console.log("COMPONENT STATE::", this);
     const {actions} = this.props;
     return (
       <div className="Home">
-        <h1>Home</h1>
-        <Hero image={HeroImage} title="Reactivity is here..."/>
+        <Hero image={HeroImage} />
         <div className="row">
           {items.map( (item, i) => {
             return (
-              <ItemCard cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>
+              <ItemCard onClick={this.goToPDP.bind(this)} cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>
             );
           })}
         </div>
@@ -64,6 +72,9 @@ class HomeContainer extends Component {
 
 HomeContainer.propTypes = {
   actions: PropTypes.object.isRequired
+};
+HomeContainer.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

@@ -25,7 +25,7 @@ class MiniCart extends React.Component {
       <div className={this.props.className + ' MiniCart'}>
         <div className="row">
           <i className="fa fa-shopping-basket four columns"></i>
-          <p className="eight columns u-pull-left" >{cartTotal}</p>
+          <p className="eight columns u-pull-left" >${cartTotal}</p>
         </div>
       </div>
     );

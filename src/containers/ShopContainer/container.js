@@ -8,6 +8,7 @@ require('./styles.scss');
 class ShopContainerContainer extends Component {
   render() {
     const {actions} = this.props;
+    console.log('PDP', this);
     return (
       <div className="ShopContainer">
         <h1>ShopContainer</h1>

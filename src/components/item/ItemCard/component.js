@@ -19,9 +19,13 @@ class ItemCard extends React.Component {
   componentWillUnmount(){
     return;
   }
-  sendActionWithProps(){
+  sendActionWithProps(e) {
     console.log('SENDING ACTION WITH PROPS!');
-    this.props.action(this.props.item)
+    this.props.action(this.props.item, e)
+  }
+  transitionToPDP(e) {
+    const item = this.props.item;
+    this.props.onClick(item, e);
   }
   render () {
     const item = this.props.item;
@@ -34,12 +38,13 @@ class ItemCard extends React.Component {
     }
     //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
+    let buttonClass = buttonState === "Remove From Cart" ? 'item-in-cart' : '' ;
 
     return (
-      <div className="itemCard three columns">
+      <div onClick={this.transitionToPDP.bind(this)} className="itemCard three columns">
         <img src={this.props.item.image} />
         <p className="itemCard--price">{this.props.item.price}</p>
-        <Button onClick={this.sendActionWithProps.bind(this)} item={item}>{buttonState}</Button>
+        <Button className={buttonClass} onClick={this.sendActionWithProps.bind(this)} item={item}>{buttonState}</Button>
       </div>
 
     );
