@@ -8,7 +8,7 @@ require('./styles.scss');
 class Navigation extends React.Component {
   render () {
     return (
-      <nav>
+      <nav className={this.props.className}>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/shop">Shop</Link>

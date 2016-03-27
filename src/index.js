@@ -16,6 +16,7 @@ import ShopContainer from './containers/ShopContainer/container';
 
 //Styles
 require("skeleton-css");
+require("font-awesome-webpack");
 
 render(
   <Provider store={store}>

@@ -2,7 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
+//Components
 import Navigation from '../components/common/Navigation/component';
+import MiniCart from '../components/cart/MiniCart/component';
+
+//Actions
 import Actions from '../actions/actions';
 
 require('styles/global/app.scss');
@@ -12,7 +17,10 @@ class App extends Component {
     const {actions} = this.props;
     return (
       <div className="wrapper">
-        <Navigation />
+        <div className="row">
+          <Navigation className="eight columns"/>
+          <MiniCart className="four columns" cart={this.props.cart} />
+        </div>
         <div id="wrapper">
           {this.props.children}
         </div>
@@ -27,7 +35,8 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   const props = {
-    user: state.user
+    user: state.user,
+    cart: state.cart
   };
   return props;
 }

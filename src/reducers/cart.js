@@ -6,23 +6,48 @@ module.exports = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
       let nextState = Object.assign({}, state);
+
       nextState.cartItems = nextState.cartItems || [];
       nextState.cartQty = nextState.cartQty  || 0;
 
-      nextState.cartItems.unshift(action.data.tcin);
+      nextState.cartItems.unshift(action.data);
       nextState.cartQty += action.data.qty;
-      console.log('Adding ', action.data.qty, ' To Cart ', action.data.tcin);
+
+      console.log(nextState);
+      if (nextState.cartItems.length > 1) {
+        nextState.cartTotal = nextState.cartItems.reduce(function(a, b){
+          console.log("REDUCE", a.price, b.price)
+          return {price: parseFloat(a.price) + parseFloat(b.price)};
+        }).price;
+
+      } else {
+        nextState.cartTotal = parseFloat(action.data.price);
+      }
+
       return nextState;
     }break;
     case 'REMOVE_FROM_CART': {
+
       let nextState = Object.assign({}, state);
       nextState.cartItems = nextState.cartItems || [];
       nextState.cartQty = nextState.cartQty  || 0;
 
-      nextState.cartItems.splice(state.cartItems.indexOf(action.data.tcin), 1);
-      console.log(nextState.cartItems[0]);
-      nextState.cartQty -= action.data.qty;
-      console.log('REMOVE_FROM_CART');
+      nextState.cartItems = state.cartItems.filter(function(_item){
+        return _item.tcin !== action.data.tcin;
+      });
+
+      nextState.cartQty--;
+
+      if (nextState.cartItems.length > 1) {
+        nextState.cartTotal = nextState.cartItems.reduce(function(a, b){
+          return {price: parseFloat(a.price) + parseFloat(b.price)};
+        }).price;
+
+      } else {
+        console.log("Cart Items::", nextState.cartItems.length);
+        nextState.cartTotal = nextState.cartItems.length > 0 ? +nextState.cartItems[0].price : '0.00';
+      }
+
       return nextState;
     }break;
     case 'INCREMENT_QTY': {

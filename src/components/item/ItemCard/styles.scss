@@ -1,0 +1,23 @@
+/*================================
+SCSS Styles for Item-Card component
+==================================*/
+
+.itemCard {
+  /*Place Styles Here*/
+  border:1px dashed #cccccc;
+  padding:1em;
+  text-align:center;
+  img {
+    width:100px;
+
+  }
+  button {
+    width: 100%;
+    padding: 0 5px;
+  }
+}
+.itemCard--price {
+  font-size:1.3em;
+  font-weight:bold;
+  margin:1em 0;
+}
