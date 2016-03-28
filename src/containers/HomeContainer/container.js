@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
+const api = require('../../apis/products');
 
 import Hero from '../../components/common/Hero/component';
 import Actions from '../../actions/actions';
@@ -14,9 +15,8 @@ let HeroImage = require('../../images/logo.svg');
 
 
 class HomeContainer extends Component {
-  componentDidMount(){
-    this.props.actions.getProducts();
-      console.log('CALLING API', this);
+  componentWillMount(){
+    api.getProducts();
   }
   updateCart(item, e) {
     console.log("ITEM =>", item);
@@ -49,7 +49,15 @@ class HomeContainer extends Component {
   goToPDP(item, e) {
     console.log(item);
     console.log('GOING TO PDP');
-    this.context.router.push('/shop/'+item.tcin);
+    this.context.router.push('/s?searchTerm=shirts&limit=20');
+  }
+  search(item, e) {
+    console.log(item);
+    console.log('GOING TO PDP');
+    this.context.router.push('/s?searchTerm=shirts&limit=20');
+  }
+  goToPLP() {
+    return
   }
   render() {
     console.log("COMPONENT STATE::", this);

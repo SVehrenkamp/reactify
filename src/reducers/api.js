@@ -5,10 +5,10 @@ module.exports = (state = initialState, action) => {
 
   switch (action.type) {
     case 'GET_PRODUCTS': {
-      const products = ProductsAPI.getProducts();
+      console.log('CAUGHT BY REDUCER');
       let nextState = Object.assign({}, state);
 
-      nextState.items = products;
+      nextState.items = action.data.products;
       console.log('ITEMS', nextState.items);
       return nextState;
     }break;

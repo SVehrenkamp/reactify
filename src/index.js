@@ -5,14 +5,17 @@ import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 //Stores
-import configureStore from './stores';
-const store = configureStore();
+import store from './stores';
+//const store = configureStore();
+
+console.log(store);
 
 //Component Containers
 import App from './containers/App';
 import HomeContainer from './containers/HomeContainer/container';
-import AboutContainer from './containers/AboutContainer/container';
-import ShopContainer from './containers/ShopContainer/container';
+import PLPContainer from './containers/PLP/container';
+import SLPContainer from './containers/SLP/container';
+import PDPContainer from './containers/PDP/container';
 
 //Styles
 require("skeleton-css");
@@ -23,8 +26,9 @@ render(
     <Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={HomeContainer} />
-        <Route path="/about" component={AboutContainer} />
-        <Route path="/shop/:tcin" component={ShopContainer} />
+        <Route path="/s" component={SLPContainer} />
+        <Route path="/c/:category" component={PLPContainer} />
+        <Route path="/p/:product" component={PDPContainer} />
       </Route>
     </Router>
   </Provider>,
