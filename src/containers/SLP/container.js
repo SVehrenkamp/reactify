@@ -2,8 +2,12 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+const api = require('../../apis/products');
+
+import Actions from '../../actions/actions';
 
 class SLPContainer extends Component {
+
   render() {
     const {actions} = this.props;
     return (

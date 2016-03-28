@@ -27,8 +27,8 @@ render(
       <Route component={App}>
         <Route path="/" component={HomeContainer} />
         <Route path="/s" component={SLPContainer} />
-        <Route path="/c/:category" component={PLPContainer} />
-        <Route path="/p/:product" component={PDPContainer} />
+        <Route path="/c/*" component={PLPContainer} />
+        <Route path="/p/*" component={PDPContainer} />
       </Route>
     </Router>
   </Provider>,

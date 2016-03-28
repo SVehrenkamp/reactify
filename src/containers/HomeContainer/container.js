@@ -48,8 +48,8 @@ class HomeContainer extends Component {
   }
   goToPDP(item, e) {
     console.log(item);
-    console.log('GOING TO PDP');
-    this.context.router.push('/s?searchTerm=shirts&limit=20');
+    const uri = item.targetDotComUri.split('/p/')[1];
+    this.context.router.push('/p/'+uri);
   }
   search(item, e) {
     console.log(item);

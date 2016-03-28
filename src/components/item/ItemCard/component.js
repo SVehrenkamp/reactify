@@ -42,7 +42,7 @@ class ItemCard extends React.Component {
     if (this.props.cart.cartItems){
       _item = this.props.cart.cartItems.filter(function(cartItem){
         //console.log(cartItem.tcin);
-        return cartItem.tcin === item.tcin;
+        return cartItem.tcin === item.tcin || cartItem.parentTcin === item.tcin || cartItem.tcin === item.parentTcin;
       })[0];
     }
     //console.log("ITEM IN CART", _item);
