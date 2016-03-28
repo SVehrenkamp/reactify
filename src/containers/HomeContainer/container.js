@@ -19,7 +19,6 @@ class HomeContainer extends Component {
     api.getProducts();
   }
   updateCart(item, e) {
-    console.log("ITEM =>", item);
     e.preventDefault();
     e.stopPropagation();
 
@@ -28,11 +27,9 @@ class HomeContainer extends Component {
     var _item;
     if (cartItems){
       _item = cartItems.filter(function(cartItem){
-        //console.log(cartItem.tcin);
         return cartItem.tcin === item.tcin;
       })[0];
     }
-    //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
 
     switch (buttonState) {
@@ -47,13 +44,10 @@ class HomeContainer extends Component {
     }
   }
   goToPDP(item, e) {
-    console.log(item);
     const uri = item.targetDotComUri.split('/p/')[1];
     this.context.router.push('/p/'+uri);
   }
   search(item, e) {
-    console.log(item);
-    console.log('GOING TO PDP');
     this.context.router.push('/s?searchTerm=shirts&limit=20');
   }
   goToPLP() {

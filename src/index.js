@@ -8,8 +8,6 @@ import { Provider } from 'react-redux';
 import store from './stores';
 //const store = configureStore();
 
-console.log(store);
-
 //Component Containers
 import App from './containers/App';
 import HomeContainer from './containers/HomeContainer/container';

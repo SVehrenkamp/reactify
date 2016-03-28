@@ -13,7 +13,6 @@ class MiniCart extends React.Component {
     return;
   }
   componentDidMount(){
-    console.log('MINI CART', this.props);
     return;
   }
   componentWillUnmount(){

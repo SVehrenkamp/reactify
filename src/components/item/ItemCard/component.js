@@ -20,7 +20,6 @@ class ItemCard extends React.Component {
     return;
   }
   sendActionWithProps(e) {
-    console.log('SENDING ACTION WITH PROPS!');
     this.props.action(this.props.item, e)
   }
   transitionToPDP(e) {
@@ -48,6 +47,7 @@ class ItemCard extends React.Component {
     //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
     let buttonClass = buttonState === "Remove From Cart" ? 'item-in-cart' : '' ;
+
     return (
       <div onClick={this.transitionToPDP.bind(this)} className="itemCard three columns">
         <img src={this.props.item.images.primaryUri} />

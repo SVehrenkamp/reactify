@@ -13,11 +13,9 @@ class PDPContainer extends Component {
     api.getProduct(tcin);
   }
   componentDidMount(){
-    console.log('PDP DATA', this);
   }
   updateCart(e) {
     const { item } = this.props;
-    console.log("ITEM =>", item);
     e.preventDefault();
     e.stopPropagation();
 
@@ -26,11 +24,9 @@ class PDPContainer extends Component {
     var _item;
     if (cartItems){
       _item = cartItems.filter(function(cartItem){
-        //console.log(cartItem.tcin);
         return cartItem.tcin === item.tcin || cartItem.parentTcin === item.tcin || cartItem.tcin === item.parentTcin;
       })[0];
     }
-    //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
 
     switch (buttonState) {
@@ -47,16 +43,12 @@ class PDPContainer extends Component {
   render() {
     const { actions, item, cart } = this.props;
     var _item;
-    console.log('CART', cart);
     if (this.props.cart.cartItems){
       _item = this.props.cart.cartItems.filter(function(cartItem){
-        //console.log(cartItem.tcin);
-        console.log('CART ITEM', cartItem.tcin, 'ITEM', item.tcin)
         return cartItem.tcin === item.tcin || cartItem.parentTcin === item.tcin || cartItem.tcin === item.parentTcin;
       })[0];
     }
 
-    //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
     let buttonClass = buttonState === "Remove From Cart" ? 'item-in-cart' : '' ;
 
