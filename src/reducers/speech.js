@@ -13,6 +13,7 @@ module.exports = (state = initialState, action) => {
     case 'VOICE_SEARCH_QUERY': {
       console.log('VOICE_SEARCH_QUERY CAUGHT BY REDUCER');
       let nextState = Object.assign({}, state);
+      nextState.isVoiceActive = false;
       if (action.data && action.data !== '') {
         nextState.searchTerm = action.data;
       }

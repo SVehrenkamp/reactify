@@ -4,29 +4,37 @@ import store from '../stores';
 
 module.exports = {
   /*  Speech Recognition Stuff Here  */
+
+  interim_transcript: '',
+  final_transcript: '',
+  search_term: '',
   initWebSpeech() {
     console.log('Initing web speech...');
     if (!('webkitSpeechRecognition' in window)) {
       console.error('Voice Search not supported');
     } else {
       this.recognition = new webkitSpeechRecognition();
-      this.recognition.continuous = true;
+      this.recognition.continuous = false;
       this.recognition.interimResults = true;
 
 
-      this.recognition.onstart = function() {
-        //Dispatch Appropriate Actions
+      this.recognition.onstart = () => {
+        //Reset values
+        this.interim_transcript = '';
+        this.final_transcript = '';
+        this.search_term = '';
+
         console.log('recording....');
       }
-      this.recognition.onresult = function(event) {
+      this.recognition.onresult = (event) => {
         //Dispatch Appropriate Actions
         console.log('Results are in....');
 
-        var interim_transcript = '';
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
-            final_transcript += event.results[i][0].transcript;
-            console.log('FINAL', interim_transcript);
+            this.final_transcript += event.results[i][0].transcript;
+            this.search_term = this.final_transcript.split(' ')[1];
+
 
             // store.dispatch({
             //   type: 'VOICE_SEARCH',
@@ -34,20 +42,22 @@ module.exports = {
             // });
 
           } else {
-            interim_transcript += event.results[i][0].transcript;
-            console.log('INTERIM', interim_transcript);
+            this.interim_transcript += event.results[i][0].transcript;
+            console.log('INTERIM', this.interim_transcript);
           }
         }
       }
-      this.recognition.onerror = function(event) {
+      this.recognition.onerror = (event) => {
         //Dispatch Appropriate Actions
         console.log('Recording Error....', event);
       }
-      this.recognition.onend = function() {
+      this.recognition.onend = () => {
         //Dispatch Appropriate Actions
+        console.log('FINAL, DISPATCHING ACTION::', this.search_term);
+        var searchTerm = this.search_term;
         store.dispatch({
           type: 'VOICE_SEARCH_QUERY',
-          data: 'chairs'
+          data: searchTerm
         });
         console.log('Recording Ended....');
       }
