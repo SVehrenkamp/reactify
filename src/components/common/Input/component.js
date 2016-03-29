@@ -20,9 +20,7 @@ class Input extends React.Component {
   }
   render () {
     return (
-      <div className="Input">
-        {this.props.children}
-      </div>
+      <input type="text" className={'search-input ' + this.props.className} refs={this.props.refs} placeholder={this.props.placeholder}  />
     );
   }
 }

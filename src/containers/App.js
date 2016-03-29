@@ -37,7 +37,7 @@ function mapStateToProps(state) {
   const props = {
     user: state.user,
     cart: state.cart,
-    items: state.api.items
+    items: state.products.items
   };
   return props;
 }

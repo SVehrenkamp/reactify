@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const reducers = {
   cart: require('../reducers/cart.js'),
-  api: require('../reducers/api.js')
+  products: require('../reducers/products.js')
 };
 
 module.exports = combineReducers(reducers);

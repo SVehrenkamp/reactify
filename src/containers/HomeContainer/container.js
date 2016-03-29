@@ -8,6 +8,7 @@ import Hero from '../../components/common/Hero/component';
 import Actions from '../../actions/actions';
 
 import ItemCard from '../../components/item/ItemCard/component';
+import Speech from '../../components/common/Speech/component';
 
 require('./styles.scss');
 
@@ -16,7 +17,7 @@ let HeroImage = require('../../images/logo.svg');
 
 class HomeContainer extends Component {
   componentWillMount(){
-    api.getProducts();
+    //api.getProducts();
   }
   updateCart(item, e) {
     e.preventDefault();
@@ -59,7 +60,7 @@ class HomeContainer extends Component {
     const items = this.props.items;
     return (
       <div className="Home">
-        <Hero image={HeroImage} />
+        <Speech />
         <div className="row">
           {items.map( (item, i) => {
             return (
@@ -82,7 +83,7 @@ HomeContainer.contextTypes = {
 function mapStateToProps(state) {
   const props = {
     cart: state.cart,
-    items: state.api.items || []
+    items: state.products.items || []
   };
   return props;
 }
