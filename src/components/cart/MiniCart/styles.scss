@@ -4,4 +4,17 @@ SCSS Styles for MiniCart component
 
 .MiniCart {
   /*Place Styles Here*/
+  min-width:60px;
+  padding:1em;
+  position:absolute;
+  right:0;
+  top:0;
+  
+
+  i {
+    float:left;
+  }
+  p {
+    float:right;
+  }
 }

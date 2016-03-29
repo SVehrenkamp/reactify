@@ -4,4 +4,10 @@ SCSS Styles for HomeContainer component
 
 .Home {
   /*Place Styles Here*/
+  text-align:center;
+  font-family: 'Helvetica';
+
+  h2 {
+    font-weight:bold;
+  }
 }

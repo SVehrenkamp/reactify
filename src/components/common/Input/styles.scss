@@ -2,6 +2,14 @@
 SCSS Styles for Input component
 ==================================*/
 
-.Input {
+.search-input {
   /*Place Styles Here*/
+  font-family:'HelveticaNeue';
+  font-weight: 100;
+  font-style: italic;
+  color: #333;
+  font-size: 2em;
+  text-align:center;
+  padding:1em!important;
+
 }

@@ -3,6 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import speech from '../../../apis/speech';
+import api from '../../../apis/products';
 
 import Actions from '../../../actions/actions';
 
@@ -11,30 +13,54 @@ import Button from '../Button/component';
 
 //include styles
 require('./styles.scss');
+const spinner = require('../../../images/spinner.gif');
 
 class Speech extends React.Component {
   constructor() {
     super();
   }
   componentWillMount() {
+    speech.initWebSpeech();
     return;
   }
-  componentDidMount(){
-    return;
-  }
-  componentWillUnmount(){
-    return;
+  componentDidUpdate(){
+    const { isVoiceActive, searchTerm } = this.props.speech;
+
+    if (isVoiceActive) {
+      speech.startRecording();
+    } else {
+      speech.stopRecording();
+    }
+
+    if (searchTerm) {
+      this.search();
+    }
   }
   voiceSearch(){
-    console.log('SEARCHING....');
+    this.props.actions.voiceSearch();
+  }
+  voiceState(){
+    return 'fa-microphone'
+  }
+  search(){
+    const { searchTerm } = this.props.speech;
+    api.getProducts(searchTerm);
   }
   render () {
     console.log('SPEECH', this);
+    const { isVoiceActive } = this.props.speech;
+
+    const voiceState = isVoiceActive || false;
+    const iconState = voiceState ? 'fa-microphone-slash' : 'fa-microphone';
+    const isRecording = voiceState ? 'recording' : '';
+    const placeHolderText = voiceState ? 'listening...' : 'what can i help you find?';
+
     return (
       <div className="Speech">
-        <Input placeholder="search" refs="search-box" className="u-full-width" />
+        <Input placeholder={placeHolderText} refs="search-box" className="u-full-width" />
         <Button className="voiceSearch" onClick={this.voiceSearch.bind(this)}>
-          <i className={'fa ' + this.props.microphoneIsActive }></i>
+          <div className={'recording-btn ' + isRecording } />
+          <i className={'fa ' + iconState }></i>
         </Button>
       </div>
     );
@@ -50,8 +76,7 @@ Speech.contextTypes = {
 
 function mapStateToProps(state) {
   const props = {
-    cart: state.cart,
-    items: state.products.items || []
+    speech: state.speech
   };
   return props;
 }

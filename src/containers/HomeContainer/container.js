@@ -4,20 +4,18 @@ import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 const api = require('../../apis/products');
 
-import Hero from '../../components/common/Hero/component';
 import Actions from '../../actions/actions';
 
 import ItemCard from '../../components/item/ItemCard/component';
 import Speech from '../../components/common/Speech/component';
 
 require('./styles.scss');
-
-let HeroImage = require('../../images/logo.svg');
+const spinner = require('../../images/spinner.gif');
 
 
 class HomeContainer extends Component {
   componentWillMount(){
-    //api.getProducts();
+    //api.getProducts('chairs');
   }
   updateCart(item, e) {
     e.preventDefault();
@@ -56,17 +54,25 @@ class HomeContainer extends Component {
   }
   render() {
     console.log("COMPONENT STATE::", this);
+    const { isFetching } = this.props;
+
+    const loading = isFetching ? <img className="spinner" src={spinner} /> : '';
+
     const {actions} = this.props;
     const items = this.props.items;
     return (
       <div className="Home">
+        <h2>hi.</h2>
         <Speech />
         <div className="row">
-          {items.map( (item, i) => {
-            return (
-              <ItemCard onClick={this.goToPDP.bind(this)} cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>
-            );
-          })}
+          <div>
+            {loading}
+            {items.map( (item, i) => {
+              return (
+                <ItemCard onClick={this.goToPDP.bind(this)} cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -83,7 +89,9 @@ HomeContainer.contextTypes = {
 function mapStateToProps(state) {
   const props = {
     cart: state.cart,
-    items: state.products.items || []
+    items: state.products.items || [],
+    isFetching: state.products.isFetching || false,
+    speech:state.speech
   };
   return props;
 }

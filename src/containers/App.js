@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 //Components
 import Navigation from '../components/common/Navigation/component';
-import MiniCart from '../components/cart/MiniCart/component';
+import Header from '../components/common/Header/component';
 
 //Actions
 import Actions from '../actions/actions';
@@ -18,8 +18,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="row">
-          <Navigation className="eight columns"/>
-          <MiniCart className="four columns" cart={this.props.cart} />
+          <Header cart={this.props.cart}/>
         </div>
         <div id="wrapper">
           {this.props.children}

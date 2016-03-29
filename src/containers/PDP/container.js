@@ -73,7 +73,7 @@ PDPContainer.contextTypes = {
 function mapStateToProps(state) {
   const props = {
     cart: state.cart,
-    item: state.api.pdp || {}
+    item: state.products.pdp || {}
   };
   return props;
 }

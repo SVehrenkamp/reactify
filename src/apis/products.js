@@ -5,20 +5,31 @@ import store from '../stores';
 //API Service
 import axios from 'axios';
 
-const PRODUCTS_URI = 'https://www.tgtappdata.com/v1/products/list?searchTerm=shirts';
+const PRODUCTS_URI = 'https://www.tgtappdata.com/v1/products/list?searchTerm=';
 const PRODUCT_URI  = 'https://www.tgtappdata.com/v1/products/pdp/TCIN/';
 module.exports = {
-  getProducts() {
-    return axios.get(PRODUCTS_URI)
+  getProducts(searchTerm) {
+    store.dispatch({
+      type: 'FETCHING_DATA',
+      data: true
+    });
+    return axios.get(PRODUCTS_URI + searchTerm)
             .then( (response) => {
               store.dispatch({
                 type: 'GET_PRODUCTS',
                 data: response.data
               });
-
+              store.dispatch({
+                type: 'FETCHING_DATA',
+                data: false
+              });
             })
             .catch( (error) => {
               console.log(error);
+              store.dispatch({
+                type: 'FETCHING_DATA',
+                data: false
+              });
             });
   },
   getProduct(tcin) {
