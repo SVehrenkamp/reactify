@@ -14,11 +14,12 @@ require('styles/global/app.scss');
 
 class App extends Component {
   render() {
+    console.debug('APP', this)
     const {actions} = this.props;
     return (
       <div className="wrapper">
         <div className="row">
-          <Header cart={this.props.cart}/>
+          <Header cart={this.props.cart} route={this.props.routeParams}/>
         </div>
         <div id="wrapper">
           {this.props.children}

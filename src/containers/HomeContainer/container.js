@@ -55,8 +55,10 @@ class HomeContainer extends Component {
   render() {
     console.log("COMPONENT STATE::", this);
     const { isFetching } = this.props;
+    const { searchTerm } = this.props.speech;
 
     const loading = isFetching ? <img className="spinner" src={spinner} /> : '';
+    const searchHeader = searchTerm ? <h2>search results for "{searchTerm}"</h2> : '';
 
     const {actions} = this.props;
     const items = this.props.items;
@@ -67,6 +69,7 @@ class HomeContainer extends Component {
         <div className="row">
           <div>
             {loading}
+            {searchHeader}
             {items.map( (item, i) => {
               return (
                 <ItemCard onClick={this.goToPDP.bind(this)} cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>

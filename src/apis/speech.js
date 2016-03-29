@@ -47,7 +47,7 @@ module.exports = {
         //Dispatch Appropriate Actions
         store.dispatch({
           type: 'VOICE_SEARCH_QUERY',
-          data: 'shirts'
+          data: 'chairs'
         });
         console.log('Recording Ended....');
       }

@@ -23,6 +23,7 @@ class Header extends React.Component {
     return;
   }
   render () {
+    console.log('HEADER', this);
     return (
       <div className="Header">
         <img className="Header--logo" src={logo} />
@@ -31,6 +32,10 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 Header.displayName = "Header";
 Header.defaultProps = {};
