@@ -68,4 +68,8 @@ Example
 ```
 react g component common/button
 ```
-The above command creates a directory in components/common called "button" and contains a ```component.js``` and ```styles.scss``` file
+or
+```
+npm run generate component common/button
+```
+The above commands create a directory in components/common called "button" and contains a ```component.js``` and ```styles.scss``` file
