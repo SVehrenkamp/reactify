@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 //Components
-import Navigation from '../components/common/Navigation/component';
-import MiniCart from '../components/cart/MiniCart/component';
+import Header from '../components/common/Header/component';
 
 //Actions
 import Actions from '../actions/actions';
@@ -14,12 +13,11 @@ require('styles/global/app.scss');
 
 class App extends Component {
   render() {
-    const {actions} = this.props;
+    const {actions, cart, routeParams} = this.props;
     return (
       <div className="wrapper">
-        <div className="row">
-          <Navigation className="eight columns"/>
-          <MiniCart className="four columns" cart={this.props.cart} />
+        <div className="row HeaderWrapper">
+          <Header cart={cart} route={routeParams}/>
         </div>
         <div id="wrapper">
           {this.props.children}
@@ -37,7 +35,7 @@ function mapStateToProps(state) {
   const props = {
     user: state.user,
     cart: state.cart,
-    items: state.api.items
+    items: state.products.items
   };
   return props;
 }

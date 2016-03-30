@@ -6,19 +6,7 @@ import React from 'react';
 require('./styles.scss');
 
 class Button extends React.Component {
-  constructor() {
-    super();
-  }
-  componentWillMount() {
-    return;
-  }
-  componentDidMount(){
-    return;
-  }
-  componentWillUnmount(){
-    return;
-  }
-  render () {
+    render () {
     return (
       <button
         className={'Button ' + this.props.className}
@@ -29,8 +17,5 @@ class Button extends React.Component {
     );
   }
 }
-
-Button.displayName = "Button";
-Button.defaultProps = {};
 
 export default Button;

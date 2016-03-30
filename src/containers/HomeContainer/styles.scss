@@ -2,6 +2,14 @@
 SCSS Styles for HomeContainer component
 ==================================*/
 
-.HomeContainer {
+.Home {
   /*Place Styles Here*/
+  text-align:center;
+  font-family: 'Helvetica';
+
+  h2 {
+    font-weight:bold;
+    padding-left: 0.6em;
+    padding:1em 0 1em 0.6em;
+  }
 }

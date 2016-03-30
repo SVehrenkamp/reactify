@@ -11,6 +11,9 @@ const DECREMENT_QTY = require('./cart/DECREMENT_QTY');
 //API Actions
 const GET_PRODUCTS = require('./api/GET_PRODUCTS');
 const GET_PRODUCT = require('./api/GET_PRODUCT');
+const FETCH_DATA = require('./api/FETCH_DATA');
+const VOICE_SEARCH = require('./api/VOICE_SEARCH');
+
 
 module.exports = {
   cart: {
@@ -21,6 +24,8 @@ module.exports = {
   },
   api: {
     getProducts: GET_PRODUCTS,
-    getProduct: GET_PRODUCT
+    getProduct: GET_PRODUCT,
+    fetchData: FETCH_DATA,
+    voiceSearch: VOICE_SEARCH
   }
 };

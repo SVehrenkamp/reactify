@@ -6,28 +6,12 @@ import React from 'react';
 require('./styles.scss');
 
 class Input extends React.Component {
-  constructor() {
-    super();
-  }
-  componentWillMount() {
-    return;
-  }
-  componentDidMount(){
-    return;
-  }
-  componentWillUnmount(){
-    return;
-  }
+
   render () {
     return (
-      <div className="Input">
-        {this.props.children}
-      </div>
+      <input type="text" className={'search-input ' + this.props.className} refs={this.props.refs} placeholder={this.props.placeholder}  />
     );
   }
 }
-
-Input.displayName = "Input";
-Input.defaultProps = {};
 
 export default Input;
