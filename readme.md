@@ -36,7 +36,9 @@ react s
 ```
 
 ### React CLI
-Convenience utility for creating/removing components, starting dev server and building.  Run ```npm link``` from the project folder to enable.
+Optional convenience utility for creating/removing components, starting dev server and building.
+
+Run ```npm link``` from the project folder to enable.
 
 **Available Commands**
   ```react g```, ```generate``` ***<component|action|container|reducer>
