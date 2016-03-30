@@ -19,10 +19,10 @@ A voice driven search POC for searching target.com built with
 [Web Speech API]: <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API>
 
 ### Installation
-Install node dependencies ```npm install``` \
+Install node dependencies ```npm install```
 Install bower dependencies ```bower install```
 
-**Optional Command Line Tool**\
+**Optional Command Line Tool**
 Run ```npm link``` from the project folder to enable ```react``` command line shortcuts.
 
 ### Starting The Project
@@ -36,24 +36,26 @@ react s
 ```
 
 ### React CLI
-Convenience utility for creating/removing components, starting dev server and building.\
+Optional convenience utility for creating/removing components, starting dev server and building.
 
-**Available Commands**\
+Run ```npm link``` from the project folder to enable.
+
+**Available Commands**
   ```react g```, ```generate``` ***<component|action|container|reducer>
-  <name|folder/name>***\
+  <name|folder/name>***
     -Creates a new component, action, container or reducer.
 
-  ```react d```, ```delete``` **<component|action|container|reducer> <name|folder/name>** \
+  ```react d```, ```delete``` **<component|action|container|reducer> <name|folder/name>**
     -Deletes a component, action, container or reducer. *-WIP*
 
-  ```react s```, ```serve``` \
+  ```react s```, ```serve```
     -Starts the development server with the development environment.
 
-  ```react s:dist```, ```serve:dist``` \
+  ```react s:dist```, ```serve:dist```
     -Starts the development server with the production environment. *-WIP*
 
-  ```react b```, ```build``` \
+  ```react b```, ```build```
     -Builds the project for production. *-WIP*
 
-  ```react h```, ```help``` \
+  ```react h```, ```help```
     -Displays the help menu.
