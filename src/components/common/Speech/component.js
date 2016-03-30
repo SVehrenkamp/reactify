@@ -24,21 +24,11 @@ class Speech extends React.Component {
   componentDidUpdate(){
     const { isVoiceActive, searchTerm } = this.props.speech;
 
-    if (isVoiceActive) {
-      speech.startRecording();
-    } else {
-      speech.stopRecording();
-    }
-
-    if (searchTerm) {
-      this.search();
-    }
+    (isVoiceActive) ? speech.startRecording() : speech.stopRecording();
+    if (searchTerm) this.search();
   }
   voiceSearch(){
     this.props.actions.voiceSearch();
-  }
-  voiceState(){
-    return 'fa-microphone'
   }
   search(){
     const { searchTerm } = this.props.speech;

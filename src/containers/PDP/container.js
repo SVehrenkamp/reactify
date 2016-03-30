@@ -20,13 +20,15 @@ class PDPContainer extends Component {
   componentDidMount(){
   }
   content() {
-    if (this.props.item) {
-      return <ItemDetails cart={this.props.cart} item={this.props.item} />
+    if (this.props.item.hasOwnProperty('tcin')) {
+      console.log('THERES AN ITEM');
+      return <ItemDetails cart={this.props.cart} item={this.props.item} actions={this.props.actions} />
     } else {
       return <img src={spinner} />
     }
   }
   render() {
+    console.log(this);
     return (
       <div className="PDP">
         {this.content()}
@@ -45,7 +47,8 @@ PDPContainer.contextTypes = {
 function mapStateToProps(state) {
   const props = {
     cart: state.cart,
-    item: state.products.pdp || {}
+    item: state.products.pdp || {},
+    isFetching: state.products.isFetching || true
   };
   return props;
 }

@@ -35,6 +35,7 @@ class ItemDetails extends Component {
     }
   }
   render() {
+    console.log('ITEMD', this.props);
     const {item, cart } = this.props;
     var _item;
     if (this.props.cart.cartItems){
