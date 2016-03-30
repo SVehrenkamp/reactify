@@ -7,18 +7,7 @@ import Button from '../../common/Button/component';
 require('./styles.scss');
 
 class ItemCard extends React.Component {
-  constructor() {
-    super();
-  }
-  componentWillMount() {
-    return;
-  }
-  componentDidMount(){
-    return;
-  }
-  componentWillUnmount(){
-    return;
-  }
+
   sendActionWithProps(e) {
     this.props.action(this.props.item, e)
   }
@@ -40,11 +29,9 @@ class ItemCard extends React.Component {
     var _item;
     if (this.props.cart.cartItems){
       _item = this.props.cart.cartItems.filter(function(cartItem){
-        //console.log(cartItem.tcin);
         return cartItem.tcin === item.tcin || cartItem.parentTcin === item.tcin || cartItem.tcin === item.parentTcin;
       })[0];
     }
-    //console.log("ITEM IN CART", _item);
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
     let buttonClass = buttonState === "Remove From Cart" ? 'item-in-cart' : '' ;
 
@@ -58,8 +45,5 @@ class ItemCard extends React.Component {
     );
   }
 }
-
-ItemCard.displayName = "ItemCard";
-ItemCard.defaultProps = {};
 
 export default ItemCard;

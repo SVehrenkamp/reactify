@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
-const api = require('../../apis/products');
+import api from '../../apis/products';
 
 import Actions from '../../actions/actions';
 
@@ -14,9 +14,7 @@ const spinner = require('../../images/spinner.gif');
 
 
 class HomeContainer extends Component {
-  componentWillMount(){
-    //api.getProducts('chairs');
-  }
+
   updateCart(item, e) {
     e.preventDefault();
     e.stopPropagation();
@@ -32,12 +30,10 @@ class HomeContainer extends Component {
     let buttonState = _item ? "Remove From Cart" : "Add To Cart";
 
     switch (buttonState) {
-      case "Remove From Cart": {
-        console.log('REMOVING FROM CART');
+      case "Remove From Cart": {;
         this.props.actions.removeFromCart(item);
       }break;
       case "Add To Cart": {
-        console.log('ADDING TO CART');
         this.props.actions.addToCart(item);
       }break;
     }
@@ -46,22 +42,13 @@ class HomeContainer extends Component {
     const uri = item.targetDotComUri.split('/p/')[1];
     this.context.router.push('/p/'+uri);
   }
-  search(item, e) {
-    this.context.router.push('/s?searchTerm=shirts&limit=20');
-  }
-  goToPLP() {
-    return
-  }
   render() {
-    console.log("COMPONENT STATE::", this);
-    const { isFetching } = this.props;
+    const { actions, isFetching, items } = this.props;
     const { searchTerm } = this.props.speech;
 
     const loading = isFetching ? <img className="spinner" src={spinner} /> : '';
     const searchHeader = searchTerm ? <h2>search results for "{searchTerm}"</h2> : '';
 
-    const {actions} = this.props;
-    const items = this.props.items;
     return (
       <div className="Home">
         <h2>hi.</h2>

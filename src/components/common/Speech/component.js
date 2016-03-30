@@ -16,9 +16,7 @@ require('./styles.scss');
 const spinner = require('../../../images/spinner.gif');
 
 class Speech extends React.Component {
-  constructor() {
-    super();
-  }
+
   componentWillMount() {
     speech.initWebSpeech();
     return;
@@ -47,7 +45,6 @@ class Speech extends React.Component {
     api.getProducts(searchTerm);
   }
   render () {
-    console.log('SPEECH', this);
     const { isVoiceActive } = this.props.speech;
 
     const voiceState = isVoiceActive || false;

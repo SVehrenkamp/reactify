@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 //Components
-import Navigation from '../components/common/Navigation/component';
 import Header from '../components/common/Header/component';
 
 //Actions
@@ -14,12 +13,11 @@ require('styles/global/app.scss');
 
 class App extends Component {
   render() {
-    console.debug('APP', this)
-    const {actions} = this.props;
+    const {actions, cart, routeParams} = this.props;
     return (
       <div className="wrapper">
         <div className="row">
-          <Header cart={this.props.cart} route={this.props.routeParams}/>
+          <Header cart={cart} route={routeParams}/>
         </div>
         <div id="wrapper">
           {this.props.children}

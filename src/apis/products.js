@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const PRODUCTS_URI = 'https://www.tgtappdata.com/v1/products/list?searchTerm=';
 const PRODUCT_URI  = 'https://www.tgtappdata.com/v1/products/pdp/TCIN/';
+
 module.exports = {
   getProducts(searchTerm) {
     store.dispatch({
@@ -25,7 +26,7 @@ module.exports = {
               });
             })
             .catch( (error) => {
-              console.log(error);
+              console.error(error);
               store.dispatch({
                 type: 'FETCHING_DATA',
                 data: false
@@ -42,7 +43,7 @@ module.exports = {
 
             })
             .catch( (error) => {
-              console.log(error);
+              console.error(error);
             });
   }
 

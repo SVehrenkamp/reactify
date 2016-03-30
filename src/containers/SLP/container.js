@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-const api = require('../../apis/products');
+import api from'../../apis/products';
 
 import Actions from '../../actions/actions';
 

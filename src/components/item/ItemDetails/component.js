@@ -10,8 +10,6 @@ require('./styles.scss');
 
 class ItemDetails extends Component {
 
-  componentDidMount(){
-  }
   updateCart(e) {
     const { item } = this.props;
     e.preventDefault();
@@ -29,18 +27,15 @@ class ItemDetails extends Component {
 
     switch (buttonState) {
       case "Remove From Cart": {
-        console.log('REMOVING FROM CART');
         this.props.actions.removeFromCart(item);
       }break;
       case "Add To Cart": {
-        console.log('ADDING TO CART');
         this.props.actions.addToCart(item);
       }break;
     }
   }
   render() {
     const {item, cart } = this.props;
-    console.log(item);
     var _item;
     if (this.props.cart.cartItems){
       _item = this.props.cart.cartItems.filter(function(cartItem){
