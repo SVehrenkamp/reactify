@@ -16,7 +16,7 @@ class App extends Component {
     const {actions, cart, routeParams} = this.props;
     return (
       <div className="wrapper">
-        <div className="row">
+        <div className="row HeaderWrapper">
           <Header cart={cart} route={routeParams}/>
         </div>
         <div id="wrapper">

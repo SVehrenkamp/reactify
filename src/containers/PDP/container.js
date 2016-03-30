@@ -10,6 +10,7 @@ import ItemDetails from '../../components/item/ItemDetails/component';
 
 //Styles
 require('./styles.scss');
+const spinner = require('../../images/spinner.gif');
 
 class PDPContainer extends Component {
   componentWillMount(){
@@ -18,10 +19,17 @@ class PDPContainer extends Component {
   }
   componentDidMount(){
   }
+  content() {
+    if (this.props.item) {
+      return <ItemDetails cart={this.props.cart} item={this.props.item} />
+    } else {
+      return <img src={spinner} />
+    }
+  }
   render() {
     return (
       <div className="PDP">
-        <ItemDetails cart={this.props.cart} item={this.props.item} />
+        {this.content()}
       </div>
     );
   }
