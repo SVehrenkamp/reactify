@@ -3,15 +3,15 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 //Actions
-import Actions from '../../actions/actions';
+import Actions from 'actions/actions';
 //Utils
-import Utils from '../../utils/cart';
+import Utils from 'utils/cart';
 //Apis
-import api from '../../apis/products';
+import api from 'apis/products';
 //Components
-import ItemList from '../../components/item/ItemList/component';
-import Speech from '../../components/common/Speech/component';
-import LoadingSpinner from '../../components/common/LoadingSpinner/component';
+import ItemList from 'components/item/ItemList/component';
+import Speech from 'components/common/Speech/component';
+import LoadingSpinner from 'components/common/LoadingSpinner/component';
 
 require('./styles.scss');
 
@@ -31,7 +31,9 @@ class HomeContainer extends Component {
 
     if (searchTerm) {
       if (isFetching) {
-        return (<LoadingSpinner text="searching..."/>);
+        return (
+          <LoadingSpinner text="searching..."/>
+        );
       } else {
         return (
           <div>

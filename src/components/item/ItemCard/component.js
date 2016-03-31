@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import Button from '../../common/Button/component';
-import Utils from '../../../utils/cart';
+import Button from 'components/common/Button/component';
+import Utils from 'utils/cart';
 
 //include styles
 require('./styles.scss');

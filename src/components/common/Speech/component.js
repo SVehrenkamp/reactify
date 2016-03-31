@@ -3,17 +3,16 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import speech from '../../../apis/speech';
-import api from '../../../apis/products';
+import speech from 'apis/speech';
+import api from 'apis/products';
 
-import Actions from '../../../actions/actions';
+import Actions from 'actions/actions';
 
-import Input from '../Input/component';
-import Button from '../Button/component';
+import Input from 'components/common/Input/component';
+import Button from 'components/common/Button/component';
 
 //include styles
 require('./styles.scss');
-const spinner = require('../../../images/spinner.gif');
 
 class Speech extends React.Component {
 

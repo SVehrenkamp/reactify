@@ -4,7 +4,7 @@ import React from 'react';
 
 //include styles
 require('./styles.scss');
-const spinner = require('../../../images/spinner.gif');
+const spinner = require('images/spinner.gif');
 
 class LoadingSpinner extends React.Component {
   render () {

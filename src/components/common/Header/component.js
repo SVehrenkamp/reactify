@@ -3,11 +3,11 @@
 import React from 'react';
 
 //Components
-import MiniCart from '../../cart/MiniCart/component';
+import MiniCart from 'components/cart/MiniCart/component';
 
 //include styles
 require('./styles.scss');
-const logo = require('../../../images/logo.svg');
+const logo = require('images/logo.svg');
 
 class Header extends React.Component {
   goBack() {

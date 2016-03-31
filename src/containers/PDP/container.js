@@ -2,12 +2,12 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import api from '../../apis/products';
+import api from 'apis/products';
 
-import Actions from '../../actions/actions';
-import Button from '../../components/common/Button/component';
-import ItemDetails from '../../components/item/ItemDetails/component';
-import LoadingSpinner from '../../components/common/LoadingSpinner/component';
+import Actions from 'actions/actions';
+import Button from 'components/common/Button/component';
+import ItemDetails from 'components/item/ItemDetails/component';
+import LoadingSpinner from 'components/common/LoadingSpinner/component';
 
 //Styles
 require('./styles.scss');

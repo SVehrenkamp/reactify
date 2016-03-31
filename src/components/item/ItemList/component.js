@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import Utils from '../../../utils/cart';
-import ItemCard from '../ItemCard/component';
+import Utils from 'utils/cart';
+import ItemCard from 'components/item/ItemCard/component';
 
 //include styles
 require('./styles.scss');

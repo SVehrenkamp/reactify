@@ -2,9 +2,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Utils from '../../../utils/cart';
+import Utils from 'utils/cart';
 
-import Button from '../../common/Button/component';
+import Button from 'components/common/Button/component';
 
 //Styles
 require('./styles.scss');

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 //Components
-import Header from '../components/common/Header/component';
+import Header from 'components/common/Header/component';
 
 //Actions
-import Actions from '../actions/actions';
+import Actions from 'actions/actions';
 
 require('styles/global/app.scss');
 
