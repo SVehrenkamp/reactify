@@ -40,7 +40,7 @@ class Speech extends React.Component {
     const voiceState = isVoiceActive || false;
     const iconState = voiceState ? 'fa-microphone-slash' : 'fa-microphone';
     const isRecording = voiceState ? 'recording' : '';
-    const placeHolderText = voiceState ? 'listening...' : 'what can i help you find?';
+    const placeHolderText = voiceState ? 'listening...' : 'whatcha looking for?';
 
     return (
       <div className="Speech">

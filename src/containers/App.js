@@ -13,11 +13,11 @@ require('styles/global/app.scss');
 
 class App extends Component {
   render() {
-    const {actions, cart, routeParams} = this.props;
+    const {actions, cart, routes} = this.props;
     return (
       <div className="wrapper">
         <div className="row HeaderWrapper">
-          <Header cart={cart} route={routeParams}/>
+          <Header cart={cart} routes={routes}/>
         </div>
         <div id="wrapper">
           {this.props.children}
@@ -30,12 +30,14 @@ class App extends Component {
 App.propTypes = {
   actions: PropTypes.object.isRequired
 };
+App.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   const props = {
-    user: state.user,
     cart: state.cart,
-    items: state.products.items
+    items: state.products.items,
   };
   return props;
 }

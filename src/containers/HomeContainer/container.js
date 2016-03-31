@@ -2,67 +2,56 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
-import api from '../../apis/products';
-
+//Actions
 import Actions from '../../actions/actions';
-
-import ItemCard from '../../components/item/ItemCard/component';
+//Utils
+import Utils from '../../utils/cart';
+//Apis
+import api from '../../apis/products';
+//Components
+import ItemList from '../../components/item/ItemList/component';
 import Speech from '../../components/common/Speech/component';
+import LoadingSpinner from '../../components/common/LoadingSpinner/component';
 
 require('./styles.scss');
-const spinner = require('../../images/spinner.gif');
 
 
 class HomeContainer extends Component {
 
-  updateCart(item, e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    let cartItems = this.props.cart.cartItems;
-
-    var _item;
-    if (cartItems){
-      _item = cartItems.filter(function(cartItem){
-        return cartItem.tcin === item.tcin;
-      })[0];
-    }
-    let buttonState = _item ? "Remove From Cart" : "Add To Cart";
-
-    switch (buttonState) {
-      case "Remove From Cart": {;
-        this.props.actions.removeFromCart(item);
-      }break;
-      case "Add To Cart": {
-        this.props.actions.addToCart(item);
-      }break;
-    }
-  }
   goToPDP(item, e) {
     const uri = item.targetDotComUri.split('/p/')[1];
+    const tcin = uri.split('/-/A-')[1];
+
     this.context.router.push('/p/'+uri);
+    api.getProduct(tcin);
+  }
+  searchFeedback(){
+    const { actions, isFetching, items, cart } = this.props;
+    const { searchTerm } = this.props.speech;
+
+    if (searchTerm) {
+      if (isFetching) {
+        return (<LoadingSpinner text="searching..."/>);
+      } else {
+        return (
+          <div>
+            <h2>search results for "{searchTerm}"</h2>
+            <ItemList action={this.goToPDP.bind(this)} cart={cart} items={items}/>
+          </div>
+        );
+      }
+    }
+
   }
   render() {
     const { actions, isFetching, items } = this.props;
-    const { searchTerm } = this.props.speech;
-
-    const loading = isFetching ? <img className="spinner" src={spinner} /> : '';
-    const searchHeader = searchTerm ? <h2>search results for "{searchTerm}"</h2> : '';
 
     return (
       <div className="Home">
         <h2>hi.</h2>
         <Speech />
         <div className="row">
-          <div>
-            {loading}
-            {searchHeader}
-            {items.map( (item, i) => {
-              return (
-                <ItemCard onClick={this.goToPDP.bind(this)} cart={this.props.cart} action={this.updateCart.bind(this)} item={item}/>
-              );
-            })}
-          </div>
+          {this.searchFeedback()}
         </div>
       </div>
     );
@@ -80,7 +69,7 @@ function mapStateToProps(state) {
   const props = {
     cart: state.cart,
     items: state.products.items || [],
-    isFetching: state.products.isFetching || false,
+    isFetching: state.products.isFetching,
     speech:state.speech
   };
   return props;

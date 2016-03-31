@@ -14,7 +14,7 @@ module.exports = {
       type: 'FETCHING_DATA',
       data: true
     });
-    return axios.get(PRODUCTS_URI + searchTerm)
+    axios.get(PRODUCTS_URI + searchTerm)
             .then( (response) => {
               store.dispatch({
                 type: 'GET_PRODUCTS',
@@ -34,16 +34,27 @@ module.exports = {
             });
   },
   getProduct(tcin) {
-    return axios.get(PRODUCT_URI+tcin)
+    store.dispatch({
+      type: 'FETCHING_DATA',
+      data: true
+    });
+    axios.get(PRODUCT_URI+tcin)
             .then( (response) => {
               store.dispatch({
                 type: 'GET_PRODUCT',
                 data: response.data
               });
-
+              store.dispatch({
+                type: 'FETCHING_DATA',
+                data: false
+              });
             })
             .catch( (error) => {
               console.error(error);
+              store.dispatch({
+                type: 'FETCHING_DATA',
+                data: false
+              });
             });
   }
 

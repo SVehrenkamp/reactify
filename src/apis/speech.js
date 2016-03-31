@@ -30,7 +30,13 @@ module.exports = {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             this.final_transcript += event.results[i][0].transcript;
-            this.search_term = this.final_transcript.split(' ')[1];
+
+            if (this.final_transcript.split(' ').length  > 1) {
+              this.search_term = this.final_transcript.split(' ')[1];
+            } else {
+              this.search_term = this.final_transcript;
+            }
+            console.log(this.final_transcript);
 
           } else {
             this.interim_transcript += event.results[i][0].transcript;

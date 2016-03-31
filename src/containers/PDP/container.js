@@ -7,28 +7,22 @@ import api from '../../apis/products';
 import Actions from '../../actions/actions';
 import Button from '../../components/common/Button/component';
 import ItemDetails from '../../components/item/ItemDetails/component';
+import LoadingSpinner from '../../components/common/LoadingSpinner/component';
 
 //Styles
 require('./styles.scss');
-const spinner = require('../../images/spinner.gif');
 
 class PDPContainer extends Component {
-  componentWillMount(){
-    const tcin = this.props.routeParams.splat.split('/-/A-')[1];
-    api.getProduct(tcin);
-  }
-  componentDidMount(){
-  }
+
   content() {
-    if (this.props.item.hasOwnProperty('tcin')) {
-      console.log('THERES AN ITEM');
-      return <ItemDetails cart={this.props.cart} item={this.props.item} actions={this.props.actions} />
+    const { cart, item, actions, isFetching } = this.props;
+    if (!isFetching) {
+      return <ItemDetails cart={cart} item={item} actions={actions} isFetching={isFetching} />
     } else {
-      return <img src={spinner} />
+      return <LoadingSpinner text="loading..."/>;
     }
   }
   render() {
-    console.log(this);
     return (
       <div className="PDP">
         {this.content()}
@@ -48,7 +42,7 @@ function mapStateToProps(state) {
   const props = {
     cart: state.cart,
     item: state.products.pdp || {},
-    isFetching: state.products.isFetching || true
+    isFetching: state.products.isFetching
   };
   return props;
 }
