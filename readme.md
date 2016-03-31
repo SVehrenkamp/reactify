@@ -41,6 +41,7 @@ Optional convenience utility for creating/removing components, starting dev serv
 Run ```npm link``` from the project folder to enable.
 
 **Available Commands**
+
   ```react g```, ```generate``` ***<component|action|container|reducer>
   <name|folder/name>***
     -Creates a new component, action, container or reducer.
@@ -59,3 +60,16 @@ Run ```npm link``` from the project folder to enable.
 
   ```react h```, ```help```
     -Displays the help menu.
+
+#### Generators
+Generators provide a convenient way to create new components, containers, actions and reducers with out have to write a bunch of boiler plate.
+
+Example
+```
+react g component common/button
+```
+or
+```
+npm run generate component common/button
+```
+The above commands create a directory in components/common called "button" and contains a ```component.js``` and ```styles.scss``` file
