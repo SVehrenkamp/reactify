@@ -3,25 +3,31 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+function getDefaultPlugins(){
+  return [
+    new ExtractTextPlugin('app.css')
+  ];
+}
 
 function getDefaultModules(){
   return {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: ExtractTextPlugin.extract('css-loader')
       },
       {
         test: /\.sass$/,
-        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
+        loader: ExtractTextPlugin.extract('css-loader!sass-loader?outputStyle=expanded&indentedSyntax')
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+        loader: ExtractTextPlugin.extract('css-loader!sass-loader?outputStyle=expanded')
       },
       {
         test: /\.less/,
-        loader: 'style-loader!css-loader!less-loader'
+        loader: ExtractTextPlugin.extract('css-loader!less-loader')
       },
       {
         test: /\.(png|jpg|jpeg|gif|woff|woff2)$/,
@@ -43,5 +49,6 @@ module.exports = {
   srcPath: srcPath,
   publicPath: '/assets/',
   port: dfltPort,
-  getDefaultModules: getDefaultModules
+  getDefaultModules: getDefaultModules,
+  getDefaultPlugins: getDefaultPlugins
 };

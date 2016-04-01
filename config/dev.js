@@ -14,15 +14,19 @@ let config = Object.assign({}, baseConfig, {
     './src/index'
   ],
   cache: true,
-  devtool: 'eval-source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false
-    })
-  ],
+  plugins: defaultSettings.getDefaultPlugins(),
   module: defaultSettings.getDefaultModules()
+});
+var plugins = [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin(),
+  new BowerWebpackPlugin({
+    searchResolveModulesDirectories: false
+  })
+];
+
+plugins.forEach( (plugin)=> {
+  config.plugins.push(plugin);
 });
 
 config.module.loaders.push({
