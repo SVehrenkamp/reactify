@@ -15,7 +15,7 @@ module.exports = (state = initialState, action) => {
       let nextState = Object.assign({}, state);
       nextState.isVoiceActive = false;
       if (action.data && action.data !== '') {
-        nextState.searchTerm = decodeURIComponent(action.data);
+        nextState.searchTerm = action.data;
       }
       return nextState;
     }break;

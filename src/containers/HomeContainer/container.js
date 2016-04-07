@@ -37,7 +37,7 @@ class HomeContainer extends Component {
       } else {
         return (
           <div>
-            <h2>search results for "{searchTerm}"</h2>
+            <h2>search results for "{decodeURIComponent(searchTerm)}"</h2>
             <ItemList action={this.goToPDP.bind(this)} cart={cart} items={items}/>
           </div>
         );

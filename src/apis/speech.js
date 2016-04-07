@@ -44,8 +44,8 @@ module.exports = {
       }
       this.recognition.onend = () => {
         //Dispatch Appropriate Actions
-        //this.parseSpeech(this.final_transcript);
-        this.parseSpeech("where is the chocolate milk");
+        this.parseSpeech(this.final_transcript);
+        //this.parseSpeech("where is chocolate milk");
       }
     }
   },
