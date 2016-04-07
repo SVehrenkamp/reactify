@@ -19,6 +19,16 @@ module.exports = (state = initialState, action) => {
       }
       return nextState;
     }break;
+    case 'FIND_TEAM_MEMBER': {
+      console.log('FIND_TEAM_MEMBER CAUGHT BY REDUCER');
+      let nextState = Object.assign({}, state);
+      nextState.teamMemberNeeded = action.data.teamMemberNeeded;
+      nextState.teamMember = action.data.teamMember;
+
+      console.log('NEXT STATE', nextState);
+
+      return nextState;
+    }break;
     default: {
       return state;
     }

@@ -45,7 +45,6 @@ module.exports = {
       this.recognition.onend = () => {
         //Dispatch Appropriate Actions
         this.parseSpeech(this.final_transcript);
-        //this.parseSpeech("where is chocolate milk");
       }
     }
   },
@@ -79,6 +78,13 @@ module.exports = {
   },
   findAvailableTeamMember() {
     console.log('Locating the nearest team member...');
+    store.dispatch({
+      type: 'FIND_TEAM_MEMBER',
+      data: {
+        teamMemberNeeded: true,
+        teamMember: null
+      }
+    });
   },
   findProductLocations(phrase) {
     let searchTerm = Utils.discard(phrase);

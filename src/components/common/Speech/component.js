@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import speech from 'apis/speech';
 import api from 'apis/products';
+import workers from 'apis/workers';
 
 import Actions from 'actions/actions';
 
@@ -21,9 +22,10 @@ class Speech extends React.Component {
     return;
   }
   componentDidUpdate(){
-    const { isVoiceActive, searchTerm } = this.props.speech;
+    const { isVoiceActive, searchTerm, teamMemberNeeded } = this.props.speech;
     (isVoiceActive) ? speech.startRecording() : speech.stopRecording();
     if (searchTerm) this.search();
+    if (teamMemberNeeded) this.getTeamMember();
   }
   voiceSearch(){
     this.props.actions.voiceSearch();
@@ -31,6 +33,10 @@ class Speech extends React.Component {
   search(){
     const { searchTerm } = this.props.speech;
     api.getProducts(searchTerm);
+  }
+  getTeamMember(){
+    workers.getTeamMember();
+    console.log('Finding a team member...');
   }
   render () {
     const { isVoiceActive } = this.props.speech;

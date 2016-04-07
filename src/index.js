@@ -14,6 +14,7 @@ import HomeContainer from './containers/HomeContainer/container';
 import PLPContainer from './containers/PLP/container';
 import SLPContainer from './containers/SLP/container';
 import PDPContainer from './containers/PDP/container';
+import TMContainer from './containers/TM/container';
 
 //Styles
 require("skeleton-css");
@@ -27,6 +28,7 @@ render(
         <Route path="/s" component={SLPContainer} />
         <Route path="/c/*" component={PLPContainer} />
         <Route path="/p/*" component={PDPContainer} />
+        <Route path="/tm/*" component={TMContainer} />
       </Route>
     </Router>
   </Provider>,

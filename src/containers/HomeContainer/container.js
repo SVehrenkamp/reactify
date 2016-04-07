@@ -27,8 +27,9 @@ class HomeContainer extends Component {
   }
   searchFeedback(){
     const { actions, isFetching, items, cart } = this.props;
-    const { searchTerm } = this.props.speech;
+    const { searchTerm, teamMember, teamMemberNeeded } = this.props.speech;
 
+    //Display Product Search Results
     if (searchTerm) {
       if (isFetching) {
         return (
@@ -42,6 +43,24 @@ class HomeContainer extends Component {
           </div>
         );
       }
+    }
+
+    //Display Find A Team Member Results
+    if (teamMemberNeeded) {
+      return (
+        <LoadingSpinner text="searching..."/>
+      );
+    }
+    if (teamMember) {
+      return (
+        <div className="teamMember">
+          <h2>help is on the way!</h2>
+          <img className="teamMember--img" src={teamMember.img} />
+          <p className="teamMember--name">name: {teamMember.name}</p>
+          <br />
+          <p className="teamMember--title">title: {teamMember.title}</p>
+        </div>
+      );
     }
 
   }

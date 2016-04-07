@@ -12,6 +12,7 @@ const GET_PRODUCT = require('./api/GET_PRODUCT');
 const FETCH_DATA = require('./api/FETCH_DATA');
 const FETCHING_DATA = require('./api/FETCHING_DATA');
 const VOICE_SEARCH = require('./api/VOICE_SEARCH');
+const FIND_TEAM_MEMBER = require('./api/FIND_TEAM_MEMBER');
 
 
 module.exports = {
@@ -25,6 +26,7 @@ module.exports = {
     getProducts: GET_PRODUCTS,
     getProduct: GET_PRODUCT,
     fetchData: FETCH_DATA,
-    voiceSearch: VOICE_SEARCH
+    voiceSearch: VOICE_SEARCH,
+    findTeamMember: FIND_TEAM_MEMBER
   }
 };
