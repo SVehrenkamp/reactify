@@ -44,8 +44,8 @@ module.exports = {
       }
       this.recognition.onend = () => {
         //Dispatch Appropriate Actions
-        this.parseSpeech(this.final_transcript);
-        //this.parseSpeech("look for chocolate milk");
+        //this.parseSpeech(this.final_transcript);
+        this.parseSpeech("where is the chocolate milk");
       }
     }
   },
@@ -81,20 +81,12 @@ module.exports = {
     console.log('Locating the nearest team member...');
   },
   findProductLocations(phrase) {
-    let discard = /\b(where|where\'s|would|is|in|it|are|all|the|a|those|this|at|be|located|store|here|near|me|can|i|find|search|look|for)\b/i;
-    let searchTerm = phrase.split(' ').filter(function(word){
-      return !discard.test(word);
-    });
+    let searchTerm = Utils.discard(phrase);
     searchTerm = searchTerm.join(' ');
-
     console.log('Finding all '+ searchTerm +' locations...');
-    console.log(typeof(searchTerm));
   },
   fetchProducts(phrase) {
-    let discard = /\b(where|where\'s|would|is|in|it|are|all|the|a|those|this|at|be|located|store|here|near|me|can|i|find|search|look|for)\b/i;
-    let searchTerm = phrase.split(' ').filter(function(word){
-      return !discard.test(word);
-    });
+    let searchTerm = Utils.discard(phrase);
     searchTerm = encodeURIComponent(searchTerm.join(' '));
     store.dispatch({
       type: 'VOICE_SEARCH_QUERY',
