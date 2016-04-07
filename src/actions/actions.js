@@ -1,7 +1,5 @@
 'use strict';
 
-//Include Actions
-
 //Cart Actions
 const ADD_TO_CART = require('./cart/ADD_TO_CART');
 const REMOVE_FROM_CART = require('./cart/REMOVE_FROM_CART');
@@ -12,6 +10,7 @@ const DECREMENT_QTY = require('./cart/DECREMENT_QTY');
 const GET_PRODUCTS = require('./api/GET_PRODUCTS');
 const GET_PRODUCT = require('./api/GET_PRODUCT');
 const FETCH_DATA = require('./api/FETCH_DATA');
+const FETCHING_DATA = require('./api/FETCHING_DATA');
 const VOICE_SEARCH = require('./api/VOICE_SEARCH');
 
 

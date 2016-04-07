@@ -47,7 +47,6 @@ class HomeContainer extends Component {
   }
   render() {
     const { actions, isFetching, items } = this.props;
-
     return (
       <div className="Home">
         <h2>hi.</h2>

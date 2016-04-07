@@ -13,7 +13,6 @@ class ItemList extends React.Component {
     Utils.updateCart(cartItems, item, e);
   }
   sendActionWithProps(item, e) {
-    console.log(this.props.action);
     this.props.action(item, e)
   }
   render () {

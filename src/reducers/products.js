@@ -4,10 +4,10 @@ const ProductsAPI = require('../apis/products.js');
 module.exports = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'FETCHING_DATA': {
+    case 'FETCH_DATA': {
       let nextState = Object.assign({}, state);
 
-      nextState.isFetching = action.data;
+      nextState.isFetching = action.data.isFetching;
       return nextState;
     }break;
     case 'GET_PRODUCTS': {

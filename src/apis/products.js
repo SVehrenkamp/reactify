@@ -1,5 +1,7 @@
 //actions
-import FETCH_DATA from '../actions/api/FETCH_DATA';
+import actions from '../actions/actions';
+const { api: {getProducts, getProduct, fetchData} } = actions;
+
 //Stores
 import store from '../stores';
 //API Service
@@ -10,51 +12,27 @@ const PRODUCT_URI  = 'https://www.tgtappdata.com/v1/products/pdp/TCIN/';
 
 module.exports = {
   getProducts(searchTerm) {
-    store.dispatch({
-      type: 'FETCHING_DATA',
-      data: true
-    });
+    store.dispatch(fetchData({isFetching: true}));
     axios.get(PRODUCTS_URI + searchTerm)
             .then( (response) => {
-              store.dispatch({
-                type: 'GET_PRODUCTS',
-                data: response.data
-              });
-              store.dispatch({
-                type: 'FETCHING_DATA',
-                data: false
-              });
+              store.dispatch(getProducts(response.data));
+              store.dispatch(fetchData({isFetching:false}));
             })
             .catch( (error) => {
               console.error(error);
-              store.dispatch({
-                type: 'FETCHING_DATA',
-                data: false
-              });
+              store.dispatch(fetchData({isFetching:false}));
             });
   },
   getProduct(tcin) {
-    store.dispatch({
-      type: 'FETCHING_DATA',
-      data: true
-    });
+    store.dispatch(fetchData({isFetching:true}));
     axios.get(PRODUCT_URI+tcin)
             .then( (response) => {
-              store.dispatch({
-                type: 'GET_PRODUCT',
-                data: response.data
-              });
-              store.dispatch({
-                type: 'FETCHING_DATA',
-                data: false
-              });
+              store.dispatch(getProduct(response.data));
+              store.dispatch(fetchData({isFetching:false}));
             })
             .catch( (error) => {
               console.error(error);
-              store.dispatch({
-                type: 'FETCHING_DATA',
-                data: false
-              });
+              store.dispatch(fetchData({isFetching:false}));
             });
   }
 

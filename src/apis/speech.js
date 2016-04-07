@@ -1,5 +1,6 @@
 //Stores
 import store from '../stores';
+import Utils from 'utils/speech';
 
 
 module.exports = {
@@ -31,11 +32,6 @@ module.exports = {
           if (event.results[i].isFinal) {
             this.final_transcript += event.results[i][0].transcript;
 
-            if (this.final_transcript.split(' ').length  > 1) {
-              this.search_term = this.final_transcript.split(' ')[1];
-            } else {
-              this.search_term = this.final_transcript;
-            }
             console.log(this.final_transcript);
 
           } else {
@@ -48,11 +44,8 @@ module.exports = {
       }
       this.recognition.onend = () => {
         //Dispatch Appropriate Actions
-        var searchTerm = this.search_term;
-        store.dispatch({
-          type: 'VOICE_SEARCH_QUERY',
-          data: searchTerm
-        });
+        this.parseSpeech(this.final_transcript);
+        //this.parseSpeech("look for chocolate milk");
       }
     }
   },
@@ -62,5 +55,51 @@ module.exports = {
   },
   stopRecording() {
     this.recognition.stop();
+  },
+  parseSpeech(phrase) {
+    console.log('PARSING SPEECH', phrase);
+    switch(true) {
+      //Looking for a Team Member
+      case (phrase.indexOf('team member') !== -1) :
+      case (phrase.indexOf('worker')      !== -1) :
+      case (phrase.indexOf('assistant')   !== -1) :
+      case (phrase.indexOf('help')        !== -1) :
+      case (phrase.indexOf('manager')     !== -1) : {
+        this.findAvailableTeamMember();
+      }break;
+      //Looking for a Product Location
+      case (phrase.indexOf('where') !== -1)     : {
+        this.findProductLocations(phrase);
+      }break;
+      default: {
+      //Looking for a Product
+        this.fetchProducts(phrase);
+      }
+    }
+  },
+  findAvailableTeamMember() {
+    console.log('Locating the nearest team member...');
+  },
+  findProductLocations(phrase) {
+    let discard = /\b(where|where\'s|would|is|in|it|are|all|the|a|those|this|at|be|located|store|here|near|me|can|i|find|search|look|for)\b/i;
+    let searchTerm = phrase.split(' ').filter(function(word){
+      return !discard.test(word);
+    });
+    searchTerm = searchTerm.join(' ');
+
+    console.log('Finding all '+ searchTerm +' locations...');
+    console.log(typeof(searchTerm));
+  },
+  fetchProducts(phrase) {
+    let discard = /\b(where|where\'s|would|is|in|it|are|all|the|a|those|this|at|be|located|store|here|near|me|can|i|find|search|look|for)\b/i;
+    let searchTerm = phrase.split(' ').filter(function(word){
+      return !discard.test(word);
+    });
+    searchTerm = encodeURIComponent(searchTerm.join(' '));
+    store.dispatch({
+      type: 'VOICE_SEARCH_QUERY',
+      data: searchTerm
+    });
   }
+
 };

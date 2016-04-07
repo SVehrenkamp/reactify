@@ -22,7 +22,6 @@ class Speech extends React.Component {
   }
   componentDidUpdate(){
     const { isVoiceActive, searchTerm } = this.props.speech;
-
     (isVoiceActive) ? speech.startRecording() : speech.stopRecording();
     if (searchTerm) this.search();
   }
